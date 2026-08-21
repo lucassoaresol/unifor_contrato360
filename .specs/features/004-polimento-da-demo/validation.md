@@ -37,8 +37,8 @@ schemas, endpoints, dados canônicos ou integrações das Features 001 a 003.
   `src/styles.css:1418`, resiliência celular em `src/styles.css:1471` e movimento reduzido em
   `src/styles.css:1652`. A inspeção estrutural confirmou grids sem largura fixa de conteúdo e ações preservadas.
 - **AC-011 — PASS:** proposta, demonstração, IA, arquitetura, tecnologias e autoria estão em `README.md:1`.
-- **AC-012 — PASS:** `npm run check`, `npm run build` e `git diff --check` passaram; não houve inferência real,
-  deploy, nova dependência ou alteração das fronteiras de IA.
+- **AC-012 — PASS:** `npm run check`, `npm run build` e `git diff --check` passaram; a publicação preservou o
+  binding `AI` sem inferência real, nova dependência ou alteração das fronteiras de IA.
 
 ## Percurso e estados inspecionados
 
@@ -59,5 +59,9 @@ schemas, endpoints, dados canônicos ou integrações das Features 001 a 003.
 - `npm run build` — PASS: Worker, CSS, `analysis.js` e `favicon.svg` gerados.
 - `git diff --check` — PASS.
 - HTTP local — PASS: dashboard e detalhe `200`; contrato inexistente `404`; JavaScript e favicon servidos.
-- Escopo negativo — PASS: nenhuma dependência, prompt, schema, endpoint, binding, inferência real ou publicação foi
-  adicionada ou alterada.
+- Commit e push — PASS: `947c278` enviado à `main` do repositório oficial.
+- Deploy Cloudflare — PASS: versão `c6d1eb60-68d9-4b39-beda-3eb08e0956da`, com binding `env.AI` confirmado.
+- Percurso publicado — PASS: dashboard, detalhe, CSS, JavaScript e favicon retornaram `200`; contrato inexistente
+  retornou `404`; autoria, links, metadata, consulta e orientação de IA foram encontrados no HTML público.
+- Escopo negativo — PASS: nenhuma dependência, prompt, schema, endpoint, binding ou inferência real foi adicionada
+  ou alterada.

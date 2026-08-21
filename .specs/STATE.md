@@ -7,7 +7,7 @@
 - Objetivo: demo pequena e convincente que responda “O que precisa da minha atenção hoje?”.
 - Diferencial: análise e perguntas reais sobre um contrato fictício via Cloudflare Workers AI.
 - Incremento atual: nenhum.
-- Próxima decisão: ensaiar a demo final e, mediante autorização explícita, publicar o polimento.
+- Próxima decisão: ensaiar o percurso final de aproximadamente um minuto no domínio público.
 
 ## Estado verificado
 
@@ -45,7 +45,10 @@
 - Sidebar, metadata, favicon e README agora apresentam autoria e os endereços oficiais do protótipo, GitHub e
   LinkedIn; links externos usam abertura segura em nova aba.
 - `npm run check`, `npm run build`, `git diff --check` e a passagem HTTP local passaram com 24 testes; nenhuma
-  inferência real, dependência, mudança de prompt/schema/endpoint ou publicação foi realizada.
+  inferência real, dependência ou mudança de prompt/schema/endpoint foi realizada.
+- O commit `947c278` está na `main` do GitHub e a versão `c6d1eb60-68d9-4b39-beda-3eb08e0956da` foi publicada com
+  o binding `AI`; no domínio oficial, dashboard, detalhe, CSS, JavaScript e favicon retornaram `200`, e o contrato
+  inexistente retornou `404` com a interface nova.
 
 ## Restrições ativas
 
