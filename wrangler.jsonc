@@ -1,9 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "contrato360",
+  "account_id": "93d0a7ce10c56783b8325cbab22073d3",
   "main": "src/index.tsx",
   "compatibility_date": "2026-08-21",
   "observability": {
     "enabled": true,
+  },
+  "ai": {
+    "binding": "AI",
   },
 }

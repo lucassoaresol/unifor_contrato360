@@ -9,14 +9,13 @@ Nenhuma.
 `001-casca-navegavel` — dashboard orientado à priorização de atenção e detalhe do Contrato 023/2026 com dados
 locais, validado sem IA.
 
-## Próximo incremento proposto
-
-`002-analise-com-workers-ai` — análise estruturada do contrato pelo binding `AI`, com validação, loading e erro.
+`002-analise-com-workers-ai` — análise real e estruturada pelo binding `AI`, validada com loading, erro,
+fundamentação por cláusula e uma inferência real bem-sucedida.
 
 ## Sequência proposta
 
 1. `001-casca-navegavel` — concluída
-2. `002-analise-com-workers-ai`
+2. `002-analise-com-workers-ai` — concluída
 3. `003-perguntas-sobre-contrato`
 4. `004-polimento-da-demo`
 

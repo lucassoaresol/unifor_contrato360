@@ -23,6 +23,7 @@ export type Contract = {
     priority: 'Alta' | 'Média';
   };
   obligations: ContractObligation[];
+  content?: string;
 };
 
 export type AttentionItem = {
@@ -72,6 +73,39 @@ export const contracts: Contract[] = [
         status: 'Requer atenção',
       },
     ],
+    content: `CONTRATO ADMINISTRATIVO Nº 023/2026
+
+CLÁUSULA PRIMEIRA — DO OBJETO
+
+1.1 O presente contrato tem por objeto a prestação de serviços de manutenção preventiva e corretiva em instalações prediais.
+
+CLÁUSULA SEGUNDA — DA VIGÊNCIA
+
+2.1 O prazo de vigência será de 01 de janeiro de 2026 a 31 de dezembro de 2026.
+
+CLÁUSULA SEXTA — DAS OBRIGAÇÕES DA CONTRATADA
+
+6.1 A contratada deverá realizar manutenção preventiva mensalmente.
+
+6.2 A contratada deverá manter equipe técnica disponível para atendimento das solicitações da fiscalização.
+
+6.3 A contratada deverá comunicar à fiscalização qualquer ocorrência que possa prejudicar a execução dos serviços.
+
+CLÁUSULA OITAVA — DOS RELATÓRIOS
+
+8.3 O relatório mensal de serviços deverá ser apresentado até o quinto dia útil do mês subsequente.
+
+CLÁUSULA DÉCIMA — DO REAJUSTE
+
+10.1 Os preços poderão ser reajustados após o período mínimo de doze meses, observadas as condições previstas neste contrato.
+
+CLÁUSULA DÉCIMA PRIMEIRA — DA GARANTIA
+
+11.2 A garantia contratual deverá permanecer válida durante todo o período de vigência do contrato.
+
+CLÁUSULA DÉCIMA SEGUNDA — DAS OCORRÊNCIAS
+
+12.1 As ocorrências relacionadas à execução do contrato deverão ser registradas e comunicadas à fiscalização.`,
   },
   {
     id: '032-2026',

@@ -117,10 +117,82 @@ export const ContractDetail: FC<ContractDetailProps> = ({ contract, now }) => {
           </div>
         </section>
 
-        <aside class="future-space" aria-label="Evolução planejada">
-          <div class="future-space__line" />
-          <p>Este detalhe está preparado para receber novas formas de apoio à fiscalização.</p>
-        </aside>
+        {contract.content && (
+          <section
+            class="analysis-section"
+            aria-labelledby="analysis-heading"
+            data-analysis
+            data-endpoint={`/api/contracts/${contract.id}/analyze`}
+          >
+            <div class="section-heading analysis-section__heading">
+              <div>
+                <span class="section-heading__icon analysis-section__icon" aria-hidden="true">
+                  ✦
+                </span>
+                <div>
+                  <h2 id="analysis-heading">Análise inteligente</h2>
+                  <p>
+                    Use Inteligência Artificial para identificar obrigações, prazos e pontos de
+                    atenção presentes neste contrato.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div data-analysis-state="initial">
+              <button class="button button--analysis" type="button" data-analysis-start>
+                <span aria-hidden="true">✦</span>
+                Analisar contrato com IA
+              </button>
+              <p class="analysis-note">
+                A análise é gerada a partir do conteúdo deste contrato e deve ser validada pelo
+                responsável.
+              </p>
+            </div>
+
+            <div class="analysis-loading" data-analysis-state="loading" hidden aria-live="polite">
+              <div class="analysis-loading__pulse" aria-hidden="true" />
+              <div>
+                <h3>Analisando contrato...</h3>
+                <p>Identificando informações para apoiar o acompanhamento:</p>
+                <ul>
+                  <li>obrigações da contratada e prazos;</li>
+                  <li>garantias e regras de reajuste;</li>
+                  <li>pontos de atenção e ações sugeridas.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="analysis-error" data-analysis-state="error" hidden role="alert">
+              <div>
+                <h3>Não foi possível concluir a análise</h3>
+                <p>O contrato continua disponível normalmente. Tente gerar a análise novamente.</p>
+              </div>
+              <button class="button button--secondary" type="button" data-analysis-retry>
+                Tentar novamente
+              </button>
+            </div>
+
+            <div data-analysis-state="success" hidden aria-live="polite">
+              <div class="analysis-metrics" data-analysis-metrics />
+              <div class="analysis-summary">
+                <p class="analysis-eyebrow">Resumo do contrato</p>
+                <p data-analysis-summary />
+              </div>
+              <div class="analysis-results" data-analysis-results />
+              <div class="analysis-footer">
+                <p>
+                  Análise gerada por Inteligência Artificial a partir do conteúdo do contrato.
+                  Valide as informações antes de utilizá-las em decisões administrativas.
+                </p>
+                <button class="analysis-again" type="button" data-analysis-again>
+                  Analisar novamente
+                </button>
+              </div>
+            </div>
+          </section>
+        )}
+        {contract.content && <script src="/analysis.js" defer />}
       </div>
     </Layout>
   );

@@ -6,3 +6,4 @@ coverage/
 .agents/
 package-lock.json
 docs/Handoff para Codex — MVP Contrato360.md
+types/worker-configuration.d.ts
