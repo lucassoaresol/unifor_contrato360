@@ -2,16 +2,20 @@
 
 ## Em execução
 
-Nenhuma. O ambiente está preparado, mas o desenvolvimento do produto ainda não começou.
+Nenhuma.
+
+## Concluídas
+
+`001-casca-navegavel` — dashboard orientado à priorização de atenção e detalhe do Contrato 023/2026 com dados
+locais, validado sem IA.
 
 ## Próximo incremento proposto
 
-`001-casca-navegavel` — estrutura mínima do Worker, dashboard e página do Contrato 023/2026 com dados locais,
-sem IA ainda.
+`002-analise-com-workers-ai` — análise estruturada do contrato pelo binding `AI`, com validação, loading e erro.
 
 ## Sequência proposta
 
-1. `001-casca-navegavel`
+1. `001-casca-navegavel` — concluída
 2. `002-analise-com-workers-ai`
 3. `003-perguntas-sobre-contrato`
 4. `004-polimento-da-demo`

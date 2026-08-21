@@ -12,6 +12,7 @@ const requiredFiles = [
   'vite.config.ts',
   'vitest.config.ts',
   'wrangler.jsonc',
+  'src/index.tsx',
 ];
 
 const failures = [];
@@ -72,4 +73,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('doctor: PASS — ambiente pronto; aplicação ainda não iniciada');
+console.log('doctor: PASS — ambiente pronto; aplicação disponível');

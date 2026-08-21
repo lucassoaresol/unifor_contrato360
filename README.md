@@ -1,29 +1,41 @@
 # Contrato360
 
-MVP demonstrável de apoio à gestão e fiscalização de contratos administrativos com Cloudflare Workers AI.
+Prova de conceito para apoio à gestão e fiscalização de contratos administrativos. A primeira experiência ajuda
+o fiscal a identificar o que requer atenção e navegar do alerta para a próxima ação do contrato.
 
-O repositório está na fase de **ambiente preparado**. Ainda não há código de aplicação. O escopo completo está em
-[`docs/Handoff para Codex — MVP Contrato360.md`](docs/Handoff%20para%20Codex%20%E2%80%94%20MVP%20Contrato360.md) e o
-estado de execução está em [`.specs/STATE.md`](.specs/STATE.md).
+## Tecnologias
 
-## Ambiente
+- Hono e Hono JSX;
+- TypeScript;
+- Vite e Tailwind CSS;
+- Cloudflare Workers.
 
-Requisitos:
+Workers AI será incorporado em um incremento posterior para extrair obrigações, prazos e pontos de atenção do
+texto contratual e responder perguntas fundamentadas. Esta feature usa apenas dados fictícios locais.
 
-- Node.js 22.23.2 ou mais recente compatível
-- npm 10 ou mais recente
+## Executar localmente
 
-Após clonar:
+Requer Node.js 22.23.2 ou versão compatível mais recente e npm 10+.
 
 ```bash
 nvm use
 npm install
 npm run hooks:install
-npm run doctor
-npm run check
+npm run dev
 ```
 
-Os comandos `dev` e `build` serão habilitados junto do primeiro incremento de produto, quando o entrypoint da
-aplicação existir. Isso evita confundir scaffolding vazio com um MVP funcional.
+A aplicação fica disponível no endereço informado pelo Vite. O fluxo principal é:
 
-Leia [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) antes de iniciar a implementação.
+```text
+/ → Requer sua atenção → /contratos/023-2026
+```
+
+## Validar
+
+```bash
+npm run check
+npm run build
+```
+
+Consulte [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) para detalhes do ambiente e
+[`.specs/STATE.md`](.specs/STATE.md) para o estado atual do produto.

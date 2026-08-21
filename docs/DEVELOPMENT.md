@@ -2,8 +2,8 @@
 
 ## Estado atual
 
-O ambiente foi preparado sem iniciar a aplicação. Não existem `src/`, páginas, componentes, mocks ou endpoints.
-O próximo passo deve ser abrir explicitamente a primeira feature em `.specs/features/INDEX.md`.
+A casca navegável está implementada com dashboard, detalhe do Contrato 023/2026, dados locais e estados 404. O
+próximo incremento proposto é a análise com Workers AI e só pode começar após autorização explícita no índice.
 
 ## Decisões já fixadas pelo handoff
 
@@ -36,9 +36,11 @@ O próximo passo deve ser abrir explicitamente a primeira feature em `.specs/fea
 
 ```bash
 npm run doctor       # versões, arquivos essenciais e estado do Git
+npm run dev          # aplicação local pelo Vite e runtime Cloudflare
+npm run build        # build de produção do Worker e dos assets
 npm run lint         # análise estática
 npm run typecheck    # TypeScript estrito
-npm test             # testes; aceita zero testes enquanto não há produto
+npm test             # testes de produto e integridade do repositório
 npm run format       # formata arquivos versionáveis
 npm run format:check # valida formatação
 npm run check        # gate local completo
@@ -57,21 +59,20 @@ para revisão. Se houver conflito, resolva-o e execute
 `./scripts/update-vendored-skill.sh --accept <commit-upstream>` somente após validar a skill. O script nunca cria
 commit, push ou release.
 
-## Execução local futura
-
-Quando a aplicação for iniciada, o primeiro incremento deve adicionar o entrypoint e então habilitar:
+## Execução local
 
 ```bash
 npm run dev
 npm run build
 ```
 
-O binding já está declarado em `wrangler.jsonc`. Workers AI pode exigir acesso remoto mesmo durante o
-desenvolvimento local; nenhuma chave deve ser colocada em `.dev.vars` para esse binding.
+O binding `AI` será declarado no incremento de análise com Workers AI. Mantê-lo fora da casca navegável evita
+exigir login ou conexão remota para executar esta primeira feature localmente; quando adicionado, nenhuma chave
+deve ser colocada em `.dev.vars` para esse binding.
 
 ## Sequência recomendada para o MVP
 
-1. Casca navegável: renderer, layout, dashboard e detalhe com dados locais.
+1. Casca navegável: renderer, layout, dashboard e detalhe com dados locais — concluída.
 2. Contratos de IA: tipos, prompts, validação e parsing testável.
 3. Endpoint e UX da análise, incluindo falha e nova tentativa.
 4. Endpoint e UX de perguntas, incluindo citações e resposta não localizada.
