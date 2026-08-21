@@ -144,10 +144,6 @@ export const ContractDetail: FC<ContractDetailProps> = ({ contract, now }) => {
                 <span aria-hidden="true">✦</span>
                 Analisar contrato com IA
               </button>
-              <p class="analysis-note">
-                A análise é gerada a partir do conteúdo deste contrato e deve ser validada pelo
-                responsável.
-              </p>
             </div>
 
             <div class="analysis-loading" data-analysis-state="loading" hidden aria-live="polite">
@@ -181,16 +177,23 @@ export const ContractDetail: FC<ContractDetailProps> = ({ contract, now }) => {
               </div>
               <div class="analysis-results" data-analysis-results />
               <div class="analysis-footer">
-                <p>
-                  Análise gerada por Inteligência Artificial a partir do conteúdo do contrato.
-                  Valide as informações antes de utilizá-las em decisões administrativas.
-                </p>
                 <button class="analysis-again" type="button" data-analysis-again>
                   Analisar novamente
                 </button>
               </div>
             </div>
           </section>
+        )}
+        {contract.content && (
+          <aside class="ai-guidance" aria-label="Orientação sobre Inteligência Artificial">
+            <span class="ai-guidance__sparkle" aria-hidden="true">
+              ✦
+            </span>
+            <p>
+              As informações geradas por Inteligência Artificial devem ser validadas pelo fiscal
+              antes de subsidiar decisões administrativas.
+            </p>
+          </aside>
         )}
         {contract.content && (
           <section
@@ -205,7 +208,7 @@ export const ContractDetail: FC<ContractDetailProps> = ({ contract, now }) => {
                   <Icon name="clipboard" size={19} />
                 </span>
                 <div>
-                  <h2 id="ask-heading">Pergunte sobre este contrato</h2>
+                  <h2 id="ask-heading">Consulta ao contrato</h2>
                   <p>
                     Consulte obrigações, prazos e outras informações diretamente no conteúdo do
                     contrato.
@@ -217,8 +220,8 @@ export const ContractDetail: FC<ContractDetailProps> = ({ contract, now }) => {
             <p class="ask-suggestions-label">Sugestões de perguntas</p>
             <div class="ask-suggestions">
               {[
-                'Quais são as principais obrigações da contratada?',
                 'Quando o contrato pode ser reajustado?',
+                'Quais são as principais obrigações da contratada?',
                 'Qual é a regra da garantia contratual?',
                 'Quais pontos precisam de acompanhamento?',
               ].map((question) => (
@@ -283,11 +286,6 @@ export const ContractDetail: FC<ContractDetailProps> = ({ contract, now }) => {
                 <div class="ask-result__sources" data-ask-sources />
               </div>
             </div>
-
-            <p class="ask-note">
-              As respostas são geradas por Inteligência Artificial com base no conteúdo deste
-              contrato e devem ser validadas pelo responsável.
-            </p>
           </section>
         )}
         {contract.content && <script src="/analysis.js" defer />}

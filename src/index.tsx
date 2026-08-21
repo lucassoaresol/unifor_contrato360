@@ -48,8 +48,8 @@ export function createApp({
   app.get('/', (context) =>
     context.html(
       <Document
-        description="Acompanhe contratos, prazos e pendências que precisam da sua atenção."
-        title="Visão geral"
+        description="Prova de conceito para apoio à gestão e fiscalização de contratos administrativos com Inteligência Artificial."
+        title="Contrato360 — Gestão inteligente de contratos"
       >
         <Dashboard />
       </Document>,
@@ -60,7 +60,10 @@ export function createApp({
     const contract = findContract(context.req.param('id'));
     if (!contract) {
       return context.html(
-        <Document description="Contrato não encontrado." title="Contrato não encontrado">
+        <Document
+          description="Contrato não encontrado."
+          title="Contrato não encontrado — Contrato360"
+        >
           <NotFound contract />
         </Document>,
         404,
@@ -70,7 +73,7 @@ export function createApp({
     return context.html(
       <Document
         description={`Acompanhamento do Contrato ${contract.number}.`}
-        title={`Contrato ${contract.number}`}
+        title={`Contrato ${contract.number} — Contrato360`}
       >
         <ContractDetail contract={contract} now={now()} />
       </Document>,
@@ -146,7 +149,7 @@ export function createApp({
 
   app.notFound((context) =>
     context.html(
-      <Document description="Página não encontrada." title="Página não encontrada">
+      <Document description="Página não encontrada." title="Página não encontrada — Contrato360">
         <NotFound />
       </Document>,
       404,

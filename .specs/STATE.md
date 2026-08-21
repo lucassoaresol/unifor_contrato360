@@ -2,12 +2,12 @@
 
 ## Handoff
 
-- Fase: terceiro incremento de produto concluído, publicado e validado com Workers AI real.
+- Fase: quarto incremento de produto concluído e validado localmente.
 - Fonte de produto: `docs/Handoff para Codex — MVP Contrato360.md`.
 - Objetivo: demo pequena e convincente que responda “O que precisa da minha atenção hoje?”.
 - Diferencial: análise e perguntas reais sobre um contrato fictício via Cloudflare Workers AI.
 - Incremento atual: nenhum.
-- Próxima decisão: ajustar ou autorizar `004-polimento-da-demo`.
+- Próxima decisão: ensaiar a demo final e, mediante autorização explícita, publicar o polimento.
 
 ## Estado verificado
 
@@ -40,10 +40,16 @@
 - A versão `2ef05aa3-6263-4bb3-ba37-9d23f4632062` está publicada com o binding `AI`; no domínio público, página e
   asset contêm a consulta, entrada vazia retorna `400`, contrato inexistente retorna `404` e a pergunta de reajuste
   retorna `200`, resposta após doze meses, `found: true` e cláusula 10.1.
+- A Feature 004 remove navegação inerte e linguagem de atualização inexistente, preserva o foco em atenção,
+  consolida a transparência da IA, compacta resultados e mantém consulta e análise independentes.
+- Sidebar, metadata, favicon e README agora apresentam autoria e os endereços oficiais do protótipo, GitHub e
+  LinkedIn; links externos usam abertura segura em nova aba.
+- `npm run check`, `npm run build`, `git diff --check` e a passagem HTTP local passaram com 24 testes; nenhuma
+  inferência real, dependência, mudança de prompt/schema/endpoint ou publicação foi realizada.
 
 ## Restrições ativas
 
-- Não iniciar a Feature 004 antes de autorização explícita.
+- Não ampliar a Feature 004 com novas capacidades de produto.
 - Não executar nova inferência real, deploy ou publicação sem autorização explícita.
 - Não ampliar o MVP além do handoff.
 - Não versionar dados reais, segredos ou documentos administrativos reais.

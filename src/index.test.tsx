@@ -15,6 +15,22 @@ describe('rotas da casca navegável', () => {
     const html = await response.text();
 
     expect(response.status).toBe(200);
+    expect(html).toContain('<title>Contrato360 — Gestão inteligente de contratos</title>');
+    expect(html).toContain(
+      'content="Prova de conceito para apoio à gestão e fiscalização de contratos administrativos com Inteligência Artificial."',
+    );
+    expect(html).toContain('href="/favicon.svg"');
+    expect(html).toContain('Gestão inteligente de contratos');
+    expect(html).toContain('Protótipo desenvolvido por');
+    expect(html).toContain('Lucas Soares');
+    expect(html).toContain('href="https://github.com/lucassoaresol/unifor_contrato360"');
+    expect(html).toContain('href="https://www.linkedin.com/in/lucassoaresolv"');
+    expect(html.match(/target="_blank"/g)).toHaveLength(2);
+    expect(html.match(/rel="noopener noreferrer"/g)).toHaveLength(2);
+    expect(html).not.toContain('Ocorrências');
+    expect(html).not.toContain('Pendências</span>');
+    expect(html).not.toContain('Em breve');
+    expect(html).not.toContain('Dados atualizados para a demonstração');
     expect(html).toContain('Visão geral');
     expect(html).toContain('Requer sua atenção');
     expect(html).toContain('12');
@@ -53,7 +69,7 @@ describe('rotas da casca navegável', () => {
     expect(html).toContain('Analisando contrato...');
     expect(html).toContain('Não foi possível concluir a análise');
     expect(html).toContain('src="/analysis.js"');
-    expect(html).toContain('Pergunte sobre este contrato');
+    expect(html).toContain('Consulta ao contrato');
     expect(html).toContain(
       'Consulte obrigações, prazos e outras informações diretamente no conteúdo do contrato.',
     );
@@ -65,12 +81,26 @@ describe('rotas da casca navegável', () => {
     expect(html).toContain('Consultando contrato...');
     expect(html).toContain('Não foi possível consultar o contrato');
     expect(html).toContain('Tentar novamente');
-    expect(html).toContain(
-      'As respostas são geradas por Inteligência Artificial com base no conteúdo deste contrato e devem ser validadas pelo responsável.',
-    );
+    const aiGuidance =
+      'As informações geradas por Inteligência Artificial devem ser validadas pelo fiscal antes de subsidiar decisões administrativas.';
+    expect(html).toContain(aiGuidance);
+    expect(html.split('devem ser validadas').length - 1).toBe(1);
+    const detailSequence = [
+      'Contrato 023/2026',
+      'Próxima ação',
+      'Obrigações do contrato',
+      'Análise inteligente',
+      'Consulta ao contrato',
+    ];
+    let previousDetailIndex = -1;
+    for (const item of detailSequence) {
+      const index = html.indexOf(item);
+      expect(index).toBeGreaterThan(previousDetailIndex);
+      previousDetailIndex = index;
+    }
     const suggestions = [
-      'Quais são as principais obrigações da contratada?',
       'Quando o contrato pode ser reajustado?',
+      'Quais são as principais obrigações da contratada?',
       'Qual é a regra da garantia contratual?',
       'Quais pontos precisam de acompanhamento?',
     ];

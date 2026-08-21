@@ -15,8 +15,9 @@ export const Document: FC<DocumentProps> = ({ children, description, title }) =>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta content={description} name="description" />
       <meta content="#f5f7fb" name="theme-color" />
+      <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       <link href={stylesUrl} rel="stylesheet" />
-      <title>{title} · Contrato360</title>
+      <title>{title}</title>
     </head>
     <body>{children}</body>
   </html>

@@ -31,13 +31,6 @@ if (root) {
 
   const renderCards = (items, kind) => {
     const list = element('div', 'analysis-card-list');
-    if (items.length === 0) {
-      list.append(
-        element('p', 'analysis-empty', 'Nenhuma informação desta categoria foi identificada.'),
-      );
-      return list;
-    }
-
     for (const item of items) {
       const card = element('article', `analysis-card analysis-card--${kind}`);
       card.append(element('h4', '', item.title));
@@ -69,6 +62,7 @@ if (root) {
   };
 
   const renderSection = (container, title, description, items, kind) => {
+    if (items.length === 0) return;
     const section = element('section', 'analysis-result-section');
     const heading = element('div', 'analysis-result-section__heading');
     heading.append(element('h3', '', title), element('p', '', description));
@@ -140,6 +134,7 @@ if (root) {
   };
 
   const runAnalysis = async () => {
+    root.setAttribute('aria-busy', 'true');
     showState('loading');
     try {
       const response = await fetch(root.dataset.endpoint, {
@@ -155,6 +150,8 @@ if (root) {
       showState('success');
     } catch {
       showState('error');
+    } finally {
+      root.setAttribute('aria-busy', 'false');
     }
   };
 
@@ -197,6 +194,7 @@ if (askRoot) {
   };
 
   const renderAnswer = (payload, question) => {
+    success.classList.toggle('ask-result--not-found', !payload.found);
     askRoot.querySelector('[data-ask-asked]').textContent = question;
     askRoot.querySelector('[data-ask-answer]').textContent = payload.answer;
     const sources = askRoot.querySelector('[data-ask-sources]');
@@ -215,6 +213,7 @@ if (askRoot) {
     lastQuestion = question;
     showValidation();
     showState('loading');
+    askRoot.setAttribute('aria-busy', 'true');
     try {
       const response = await fetch(askRoot.dataset.endpoint, {
         method: 'POST',
@@ -235,6 +234,8 @@ if (askRoot) {
       showState('success');
     } catch {
       showState('error');
+    } finally {
+      askRoot.setAttribute('aria-busy', 'false');
     }
   };
 

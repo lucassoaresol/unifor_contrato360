@@ -15,10 +15,6 @@ export const Dashboard: FC = () => (
           <h1>Visão geral</h1>
           <p>Acompanhe contratos, prazos e pendências que precisam da sua atenção.</p>
         </div>
-        <div class="page-header__context">
-          <span class="live-dot" />
-          Dados atualizados para a demonstração
-        </div>
       </header>
 
       <section aria-labelledby="indicadores-heading">

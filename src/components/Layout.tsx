@@ -11,24 +11,18 @@ type LayoutProps = {
 
 type NavItemProps = {
   active?: boolean;
-  href?: string;
+  href: string;
   icon: IconName;
   label: string;
-  upcoming?: boolean;
 };
 
-const NavItem: FC<NavItemProps> = ({ active = false, href, icon, label, upcoming = false }) => {
+const NavItem: FC<NavItemProps> = ({ active = false, href, icon, label }) => {
   const content = (
     <>
       <Icon name={icon} size={19} />
       <span>{label}</span>
-      {upcoming ? <span class="nav-item__soon">Em breve</span> : null}
     </>
   );
-
-  if (!href) {
-    return <span class="nav-item nav-item--disabled">{content}</span>;
-  }
 
   return (
     <a
@@ -53,12 +47,12 @@ export const Layout: FC<LayoutProps> = ({ activePage, children }) => (
         </span>
         <span class="brand__copy">
           <strong>Contrato360</strong>
-          <small>Gestão inteligente</small>
+          <small>Gestão inteligente de contratos</small>
         </span>
       </a>
 
       <nav class="primary-nav" aria-label="Navegação principal">
-        <p class="nav-label">Workspace</p>
+        <p class="nav-label">Navegação</p>
         <NavItem active={activePage === 'overview'} href="/" icon="grid" label="Visão geral" />
         <NavItem
           active={activePage === 'contracts'}
@@ -66,16 +60,31 @@ export const Layout: FC<LayoutProps> = ({ activePage, children }) => (
           icon="document"
           label="Contratos"
         />
-        <NavItem icon="clipboard" label="Ocorrências" upcoming />
-        <NavItem icon="pending" label="Pendências" upcoming />
       </nav>
 
       <div class="sidebar__footer">
-        <span class="sidebar__status-dot" />
-        <span>
-          <strong>Ambiente de demonstração</strong>
-          <small>Dados fictícios</small>
-        </span>
+        <p>
+          Protótipo desenvolvido por
+          <strong>Lucas Soares</strong>
+        </p>
+        <div class="sidebar__links">
+          <a
+            href="https://github.com/lucassoaresol/unifor_contrato360"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="github" size={16} />
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/lucassoaresolv"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="linkedin" size={16} />
+            LinkedIn <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </aside>
 

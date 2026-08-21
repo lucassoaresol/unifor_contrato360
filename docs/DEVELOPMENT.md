@@ -2,8 +2,9 @@
 
 ## Estado atual
 
-A casca navegável está implementada com dashboard, detalhe do Contrato 023/2026, dados locais e estados 404. O
-próximo incremento proposto é a análise com Workers AI e só pode começar após autorização explícita no índice.
+As Features 001 a 003 estão concluídas: dashboard, detalhe do Contrato 023/2026, análise estruturada e consulta
+fundamentada funcionam em um único Worker. A Feature 004 concluiu o polimento local da demo sem alterar contratos,
+prompts ou capacidades de IA.
 
 ## Decisões já fixadas pelo handoff
 
@@ -66,16 +67,15 @@ npm run dev
 npm run build
 ```
 
-O binding `AI` será declarado no incremento de análise com Workers AI. Mantê-lo fora da casca navegável evita
-exigir login ou conexão remota para executar esta primeira feature localmente; quando adicionado, nenhuma chave
-deve ser colocada em `.dev.vars` para esse binding.
+O binding `AI` está declarado no Wrangler e é a única integração externa do produto. Testes automatizados usam um
+binding simulado e não fazem inferência paga; a execução das páginas e do restante da aplicação não exige login.
+Nenhuma chave deve ser colocada no frontend ou em `.dev.vars` para esse binding.
 
 ## Sequência recomendada para o MVP
 
-1. Casca navegável: renderer, layout, dashboard e detalhe com dados locais — concluída.
-2. Contratos de IA: tipos, prompts, validação e parsing testável.
-3. Endpoint e UX da análise, incluindo falha e nova tentativa.
-4. Endpoint e UX de perguntas, incluindo citações e resposta não localizada.
-5. Responsividade, acessibilidade, build do Worker e ensaio da demo de um minuto.
+1. Casca navegável e narrativa de atenção — concluída.
+2. Análise estruturada com Workers AI — concluída e validada com integração real.
+3. Consulta ao contrato com fontes e ausência canônica — concluída e validada com integração real.
+4. Polimento, autoria, apresentação pública e ensaio da demo de um minuto — concluída localmente.
 
-Essa sequência é preparação, não autorização automática para implementar todos os itens.
+O índice de features continua sendo a fonte de autorização para qualquer incremento posterior.
