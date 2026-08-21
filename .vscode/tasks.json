@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Contrato360: doctor",
+      "type": "npm",
+      "script": "doctor",
+      "problemMatcher": []
+    },
+    {
+      "label": "Contrato360: check",
+      "type": "npm",
+      "script": "check",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

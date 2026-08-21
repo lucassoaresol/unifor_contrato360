@@ -1,0 +1,44 @@
+{
+  "name": "contrato360",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "doctor": "node scripts/doctor.mjs",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "npm run lint -- --fix",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run test:unit && npm run test:repo",
+    "test:unit": "vitest run --passWithNoTests",
+    "test:repo": "bash scripts/test-vendored-skill-sync.sh",
+    "format": "prettier . --write --ignore-unknown",
+    "format:check": "prettier . --check --ignore-unknown",
+    "check": "npm run lint && npm run typecheck && npm test && npm run format:check",
+    "precommit": "node scripts/pre-commit.mjs",
+    "hooks:install": "node scripts/install-git-hooks.mjs",
+    "skill:check": "bash scripts/update-vendored-skill.sh --check main",
+    "skill:merge": "bash scripts/update-vendored-skill.sh --merge main"
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10.0.0"
+  },
+  "dependencies": {
+    "hono": "4.13.3"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.53.1",
+    "@cloudflare/workers-types": "5.20260821.1",
+    "@eslint/js": "10.0.1",
+    "@tailwindcss/vite": "4.3.3",
+    "@types/node": "26.2.0",
+    "eslint": "10.9.0",
+    "prettier": "3.9.6",
+    "tailwindcss": "4.3.3",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.67.0",
+    "vite": "8.2.2",
+    "vitest": "4.1.11",
+    "wrangler": "4.125.0"
+  }
+}

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+.wrangler/
+.git/
+.agents/
+package-lock.json
+docs/Handoff para Codex — MVP Contrato360.md

@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "cloudflare.cloudflare-workers-bindings-extension",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss"
+  ]
+}

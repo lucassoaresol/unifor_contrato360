@@ -1,0 +1,19 @@
+{
+  "tlc-spec-driven": {
+    "repository": "https://github.com/tech-leads-club/agent-skills.git",
+    "source_path": "packages/skills-catalog/skills/(development)/tlc-spec-driven",
+    "target_path": ".agents/skills/tlc-spec-driven",
+    "strategy": "three-way-merge",
+    "base_ref": "fe318be656b315d5b6f45cf7ea23946b2d0241b0",
+    "upstream_version": "3.3.0",
+    "merged_at": "2026-08-21",
+    "local_customizations": [
+      "workflow reduzido para um MVP de uma única aplicação",
+      "autorização explícita antes de iniciar features propostas",
+      "critérios específicos para Cloudflare Workers AI",
+      "gates npm proporcionais ao Contrato360",
+      "validação fresh-eyes sem delegação obrigatória"
+    ]
+  }
+}
+
