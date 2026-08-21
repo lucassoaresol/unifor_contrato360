@@ -192,6 +192,104 @@ export const ContractDetail: FC<ContractDetailProps> = ({ contract, now }) => {
             </div>
           </section>
         )}
+        {contract.content && (
+          <section
+            class="ask-section"
+            aria-labelledby="ask-heading"
+            data-contract-ask
+            data-endpoint={`/api/contracts/${contract.id}/ask`}
+          >
+            <div class="section-heading ask-section__heading">
+              <div>
+                <span class="section-heading__icon ask-section__icon">
+                  <Icon name="clipboard" size={19} />
+                </span>
+                <div>
+                  <h2 id="ask-heading">Pergunte sobre este contrato</h2>
+                  <p>
+                    Consulte obrigações, prazos e outras informações diretamente no conteúdo do
+                    contrato.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p class="ask-suggestions-label">Sugestões de perguntas</p>
+            <div class="ask-suggestions">
+              {[
+                'Quais são as principais obrigações da contratada?',
+                'Quando o contrato pode ser reajustado?',
+                'Qual é a regra da garantia contratual?',
+                'Quais pontos precisam de acompanhamento?',
+              ].map((question) => (
+                <button class="ask-suggestion" type="button" data-ask-suggestion>
+                  {question}
+                </button>
+              ))}
+            </div>
+
+            <form class="ask-form" data-ask-form novalidate>
+              <label class="sr-only" for="contract-question">
+                Pergunta sobre o contrato
+              </label>
+              <div class="ask-form__row">
+                <input
+                  id="contract-question"
+                  name="question"
+                  type="text"
+                  maxlength={500}
+                  placeholder="Pergunte sobre obrigações, prazos ou cláusulas do contrato..."
+                  autocomplete="off"
+                  data-ask-question
+                />
+                <button class="button ask-submit" type="submit" data-ask-submit>
+                  Perguntar
+                </button>
+              </div>
+              <div class="ask-form__meta">
+                <p data-ask-validation role="alert" hidden />
+                <span>
+                  <span data-ask-count>0</span>/500
+                </span>
+              </div>
+            </form>
+
+            <div class="ask-loading" data-ask-state="loading" hidden aria-live="polite">
+              <div class="analysis-loading__pulse" aria-hidden="true" />
+              <div>
+                <h3>Consultando contrato...</h3>
+                <p>Localizando cláusulas relacionadas à pergunta.</p>
+              </div>
+            </div>
+
+            <div class="ask-error" data-ask-state="error" hidden role="alert">
+              <div>
+                <h3>Não foi possível consultar o contrato</h3>
+                <p>Tente novamente. O conteúdo e a análise do contrato continuam disponíveis.</p>
+              </div>
+              <button class="button button--secondary" type="button" data-ask-retry>
+                Tentar novamente
+              </button>
+            </div>
+
+            <div class="ask-result" data-ask-state="success" hidden aria-live="polite">
+              <div class="ask-result__question">
+                <p>Sua pergunta</p>
+                <strong data-ask-asked />
+              </div>
+              <div class="ask-result__answer">
+                <p>Resposta</p>
+                <strong data-ask-answer />
+                <div class="ask-result__sources" data-ask-sources />
+              </div>
+            </div>
+
+            <p class="ask-note">
+              As respostas são geradas por Inteligência Artificial com base no conteúdo deste
+              contrato e devem ser validadas pelo responsável.
+            </p>
+          </section>
+        )}
         {contract.content && <script src="/analysis.js" defer />}
       </div>
     </Layout>

@@ -160,3 +160,115 @@ if (root) {
 
   for (const control of controls) control.addEventListener('click', runAnalysis);
 }
+
+const askRoot = document.querySelector('[data-contract-ask]');
+
+if (askRoot) {
+  const form = askRoot.querySelector('[data-ask-form]');
+  const input = askRoot.querySelector('[data-ask-question]');
+  const submit = askRoot.querySelector('[data-ask-submit]');
+  const suggestions = [...askRoot.querySelectorAll('[data-ask-suggestion]')];
+  const retry = askRoot.querySelector('[data-ask-retry]');
+  const validation = askRoot.querySelector('[data-ask-validation]');
+  const count = askRoot.querySelector('[data-ask-count]');
+  const loading = askRoot.querySelector('[data-ask-state="loading"]');
+  const error = askRoot.querySelector('[data-ask-state="error"]');
+  const success = askRoot.querySelector('[data-ask-state="success"]');
+  let lastQuestion = '';
+
+  const setBusy = (busy) => {
+    input.disabled = busy;
+    submit.disabled = busy;
+    retry.disabled = busy;
+    for (const suggestion of suggestions) suggestion.disabled = busy;
+  };
+
+  const showState = (name) => {
+    loading.hidden = name !== 'loading';
+    error.hidden = name !== 'error';
+    success.hidden = name !== 'success';
+    setBusy(name === 'loading');
+  };
+
+  const showValidation = (message = '') => {
+    validation.textContent = message;
+    validation.hidden = !message;
+    input.setAttribute('aria-invalid', String(Boolean(message)));
+  };
+
+  const renderAnswer = (payload, question) => {
+    askRoot.querySelector('[data-ask-asked]').textContent = question;
+    askRoot.querySelector('[data-ask-answer]').textContent = payload.answer;
+    const sources = askRoot.querySelector('[data-ask-sources]');
+    sources.replaceChildren();
+    if (payload.found) {
+      for (const source of payload.sources) {
+        const badge = document.createElement('span');
+        badge.className = 'ask-source';
+        badge.textContent = `Cláusula ${source.clause}`;
+        sources.append(badge);
+      }
+    }
+  };
+
+  const runQuestion = async (question) => {
+    lastQuestion = question;
+    showValidation();
+    showState('loading');
+    try {
+      const response = await fetch(askRoot.dataset.endpoint, {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+      if (!response.ok) throw new Error('question request failed');
+      const payload = await response.json();
+      if (
+        !payload ||
+        typeof payload.answer !== 'string' ||
+        typeof payload.found !== 'boolean' ||
+        !Array.isArray(payload.sources)
+      ) {
+        throw new Error('question payload is invalid');
+      }
+      renderAnswer(payload, question);
+      showState('success');
+    } catch {
+      showState('error');
+    }
+  };
+
+  input.addEventListener('input', () => {
+    count.textContent = String(input.value.length);
+    if (input.value.length <= 500) showValidation();
+  });
+
+  for (const suggestion of suggestions) {
+    suggestion.addEventListener('click', () => {
+      input.value = suggestion.textContent.trim();
+      count.textContent = String(input.value.length);
+      showValidation();
+      input.focus();
+    });
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const question = input.value.trim();
+    if (!question) {
+      showValidation('Digite uma pergunta sobre o contrato.');
+      input.focus();
+      return;
+    }
+    if (question.length > 500) {
+      showValidation('A pergunta deve ter no máximo 500 caracteres.');
+      input.focus();
+      return;
+    }
+    runQuestion(question);
+  });
+
+  retry.addEventListener('click', () => {
+    if (lastQuestion) runQuestion(lastQuestion);
+  });
+}
