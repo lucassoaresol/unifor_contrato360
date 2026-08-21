@@ -17,7 +17,8 @@
 - A feature possui 8 testes automatizados e validação `PASS` registrada em `validation.md`.
 - A stack, os limites de escopo e a sequência recomendada estão documentados.
 - Toolchain local, skill spec-driven, gate de qualidade, hook e configuração do Codex estão preparados.
-- Nenhum deploy, conta Cloudflare ou credencial foi configurado.
+- Worker publicado na Cloudflare e verificado em `https://contrato360.lucas.soares.nom.br/`; a autenticação do
+  Wrangler está configurada apenas nesta máquina, sem credenciais versionadas.
 
 ## Restrições ativas
 
